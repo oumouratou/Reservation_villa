@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\{
     AdminDisputeController,
 };
 
-Route::get('/', fn() => redirect('http://127.0.0.1:5173'));
+Route::get('/', fn() => redirect()->away(env('FRONTEND_URL', 'http://127.0.0.1:5174')));
 
 // ============================================================
 // PUBLIC ROUTES

@@ -16,6 +16,7 @@ import AuthView from '../views/AuthView.vue'
 const routes = [
   { path: '/', name: 'home', component: HomeView },
   { path: '/villas', name: 'villas', component: VillasView },
+<<<<<<< HEAD
   { path: '/villas/:id', name: 'villa-detail', component: VillaDetailView, props: true },
   { path: '/login', name: 'login', component: AuthView },
   { path: '/register', name: 'register', component: AuthView },
@@ -30,6 +31,29 @@ const routes = [
   { path: '/dashboard/owner', name: 'owner-dashboard', component: OwnerDashboardView, meta: { requiresAuth: true } },
   { path: '/messages', name: 'messages', component: MessagesView, meta: { requiresAuth: true } },
   { path: '/reservations', name: 'reservations', component: ReservationView, meta: { requiresAuth: true } },
+=======
+  { path: '/reservations', name: 'reservations', component: ReservationView },
+  { path: '/messages', name: 'messages', component: MessagesView },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: AdminView,
+    meta: { requiresAuth: true, role: 'admin' },
+  },
+  { path: '/connexion', name: 'auth', component: AuthView },
+  {
+    path: '/dashboard/traveler',
+    name: 'traveler-dashboard',
+    component: TravelerDashboardView,
+    meta: { requiresAuth: true, role: 'traveler' },
+  },
+  {
+    path: '/dashboard/owner',
+    name: 'owner-dashboard',
+    component: OwnerDashboardView,
+    meta: { requiresAuth: true, role: 'owner' },
+  },
+>>>>>>> 17790bc (Sauvegarde de mon travail sur les routes et l'admin)
 ]
 
 const router = createRouter({
@@ -47,6 +71,22 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
+<<<<<<< HEAD
+=======
+
+  if (!user) {
+    return { name: 'auth' }
+  }
+
+  if (to.meta.role && user.role !== to.meta.role) {
+    if (user.role === 'admin') return { name: 'admin' }
+    if (user.role === 'owner') return { name: 'owner-dashboard' }
+    if (user.role === 'traveler') return { name: 'traveler-dashboard' }
+    return { name: 'auth' }
+  }
+
+  return true
+>>>>>>> 17790bc (Sauvegarde de mon travail sur les routes et l'admin)
 })
 
 export default router

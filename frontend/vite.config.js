@@ -4,6 +4,7 @@ import path from 'path'
 
 const backendUrl = 'http://127.0.0.1:8000'
 const proxiedRoutes = [
+  '/api',
   '/auth',
   '/villas',
   '/my-villas',
